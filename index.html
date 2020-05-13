@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+
+</head>
+<style>
+html{margin:0;padding:0;}
+    body{font-family:Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";}
+.button{margin:1%;padding:4% 8%;border-radius:10px;border:0;font-size:1.1em;font-weight:bold;color:#fff;}
+    .green{background-color:#17a148;}
+    .red{background-color:#d73a45;}
+    .blue{background-color:#2f74fa;}
+</style>
+
+
+<body>
+<h1 align="center">Events home work</h1>
+<div style="display:flex;justify-content:space-around; margin:0 auto;width:25%;text-align:center;">
+<button onclick="getElementById('demo').innerHTML='You clicked First button'" class="button blue">First</button>
+<button onclick="getElementById('demo').innerHTML='You clicked Second button'"  class="button green">Second</button>
+<button onclick="getElementById('demo').innerHTML='You clicked Third button'" class="button red">Third</button>
+    
+</div>
+    <div style="width:50%;margin:0 auto;text-align:center;font-size:1.2em;margin-top:3%;" id="demo">Please click on any button</div>
+    
+    <div style="width:150px;margin:0 auto;text-align:center;font-size:1.2em;margin-top:3%;"><button   class="button red">Button</button>
+</div>
+
+<script>
+  for(let elem of document.querySelectorAll('*')) {
+    elem.addEventListener("click", e => console.log(`Capturing: ${elem.tagName}`), true);
+    elem.addEventListener("click", e => console.log(`Bubbling: ${elem.tagName}`));
+  }
+</script>
+    
+    <!---->
+ <div id="menu" style="width:50%;margin:0 auto;text-align:center;font-size:1.2em;margin-top:3%;">
+  <button data-action="save" class="button green">Button Click</button>
+  
+</div>
+
+<script>
+  class Menu {
+    constructor(elem) {
+      this._elem = elem;
+      elem.onclick = this.onClick.bind(this); // (*)
+    }
+
+    save() {
+      alert('clicked button');
+    }
+
+    
+
+    onClick(event) {
+      let action = event.target.dataset.action;
+      if (action) {
+        this[action]();
+      }
+    };
+  }
+
+  new Menu(menu);
+</script>
+
+</body>
+</html>
